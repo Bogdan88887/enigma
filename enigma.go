@@ -1,7 +1,9 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"os"
 	"strings"
 )
 
@@ -54,16 +56,10 @@ func main() {
 			break
 		}
 
-		var message string
 		fmt.Print("Введите сообщение: ")
-		fmt.Scanln(&message) // Изменено на Scanln для считывания строки
-
-		// Ввод может содержать пробелы, добавим считывание всей строки
 		reader := bufio.NewReader(os.Stdin)
-		message, _ = reader.ReadString('\n')
-		message = strings.TrimSpace(message)
-
-		message = strings.ToUpper(message)
+		message, _ := reader.ReadString('\n')
+		message = strings.TrimSpace(strings.ToUpper(message))
 
 		if choice == 1 {
 			result := encryptDecrypt(message, rotors, reflector)
