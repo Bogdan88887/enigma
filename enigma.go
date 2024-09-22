@@ -56,7 +56,12 @@ func main() {
 
 		var message string
 		fmt.Print("Введите сообщение: ")
-		fmt.Scan(" %[^\n]", &message) // Чтение строки с пробелами
+		fmt.Scanln(&message) // Изменено на Scanln для считывания строки
+
+		// Ввод может содержать пробелы, добавим считывание всей строки
+		reader := bufio.NewReader(os.Stdin)
+		message, _ = reader.ReadString('\n')
+		message = strings.TrimSpace(message)
 
 		message = strings.ToUpper(message)
 
